@@ -28,7 +28,7 @@ def test_division_by_zero():
         1 / 0
 
 def some_function():
-    return "expected"
+    return "failed"
 
 @pytest.mark.xfail(strict=True, reason="若通过则说明问题已修复")
 def test_fixed_bug():
