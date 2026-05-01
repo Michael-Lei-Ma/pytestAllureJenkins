@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 import uuid
-
+from pathlib import Path
 @pytest.fixture
 def data():
     return [1, 2, 3, 4, 5, 6]
@@ -39,7 +39,11 @@ def json_write(doctest_namespace,request):
 
 @pytest.fixture
 def json_file_write(request):
-    temp_file = open("D:\pythonProject\pytestProject\data\data.json", "w", encoding='utf-8')
+    current_dir = Path(__file__).parent
+    data_dir = current_dir / "data"
+    data_dir.mkdir(exist_ok=True)  # 自动创建目录
+    json_file = data_dir / "data.json"
+    temp_file = open(json_file, "w", encoding='utf-8')
     def cleanup():
         temp_file.close()  # 清理函数
     request.addfinalizer(cleanup)  # 注册清理钩子
