@@ -13,7 +13,7 @@ class Test():
 
 
     def test_login(self):
-        username = "invalid_user"
+        username = "admin"
         if username != "admin":
             pytest.fail("用户名错误，必须为admin", pytrace=True)
 

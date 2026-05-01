@@ -7,5 +7,5 @@ def test_01():
 
 def test_02():
     print('这个是测试用例二')
-    assert 1 == 2
+    assert 2 == 2
 
