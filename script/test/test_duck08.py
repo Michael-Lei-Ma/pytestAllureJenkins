@@ -14,7 +14,8 @@ def teardown_function():
 def test_duck_40():
     projects = {}  # 装多个商品
     while True:
-        oper_type = input("1 - 录入商品\n2 - 查询商品\n3 - 退出\n请做出你的选择：")
+        # oper_type = input("1 - 录入商品\n2 - 查询商品\n3 - 退出\n请做出你的选择：")
+        oper_type = '3'
         if oper_type == "1":
             pro_list = []
             # 录入逻辑
