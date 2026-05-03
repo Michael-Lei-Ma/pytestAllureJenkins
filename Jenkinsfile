@@ -8,9 +8,9 @@ pipeline {
 
     environment {
         // 如果你的 Python 不在 PATH 中，可以指定绝对路径（可选）
-        PYTHON = 'C:\\Python310\\python.exe'
+        PYTHON = 'D:\\360software\\python313\\python.exe'
         // 项目虚拟环境目录（可选）
-        VENV_DIR = 'venv'
+        // VENV_DIR = 'venv'
     }
 
     stages {
@@ -51,7 +51,7 @@ pipeline {
         stage('Deploy (Optional)') {
             when {
                 // 仅当分支为 main 且测试全部通过时执行
-                branch 'main'
+                branch 'master'
                 expression { currentBuild.result == 'SUCCESS' }
             }
             steps {
@@ -66,21 +66,6 @@ pipeline {
             // 无论成功或失败都清理工作空间（可选，需安装 Workspace Cleanup 插件）
             cleanWs()
             echo 'Pipeline finished.'
-        }
-        success {
-            // 构建成功时发送通知（如邮件）
-            emailext(
-                subject: "Pipeline SUCCESS: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
-                body: "Build is successful. Check Allure report: ${env.BUILD_URL}allure/",
-                to: 'team@example.com'
-            )
-        }
-        failure {
-            emailext(
-                subject: "Pipeline FAILED: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
-                body: "Build failed. Check logs: ${env.BUILD_URL}console",
-                to: 'team@example.com'
-            )
         }
     }
 }
